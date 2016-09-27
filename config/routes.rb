@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     scope module: :v1,
       constraints: ApiConstraints.new(version: 1, default: true) do
         resources :users, :only => [:show, :create, :update, :destroy]
+        post 'auth_user' => 'authentication#authenticate_user'
+        resources :home, :only => [:index]
       end
   end
 end
