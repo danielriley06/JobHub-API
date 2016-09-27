@@ -7,13 +7,13 @@ describe ApiConstraints do
   describe "matches?" do
 
     it "returns true when the version matches the 'Accept' header" do
-      request = double(host: 'api.jobhunt.dev',
-                       headers: {"Accept" => "application/vnd.jobhunt.v1+json"})
+      request = double(host: 'api.jobhub-api.dev',
+                       headers: {"Accept" => "application/vnd.jobhub-api.v1+json"})
       expect(api_constraints_v1.matches?(request)).to be_truthy
     end
 
     it "returns true when the version matches the 'Accept' header" do
-      request = double(host: 'api.jobhunt.dev')
+      request = double(host: 'api.jobhub-api.dev')
       expect(api_constraints_v2.matches?(request)).to be_truthy
     end
   end
