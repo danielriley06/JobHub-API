@@ -10,6 +10,7 @@ class CreateJobs < ActiveRecord::Migration[5.0]
       t.string :contact_name
       t.string :contact_email
       t.string :notes
+      t.belongs_to :user, index: true
 
       t.timestamps
     end

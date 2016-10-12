@@ -8,12 +8,12 @@ Knock.setup do |config|
   ## the user_id is stored in the 'sub' claim.
   ##
   ## Default:
-  # config.current_user_from_token = -> (claims) { User.find claims['sub'] }
+  config.current_user_from_token = -> (claims) { User.find claims['sub'] }
 
   # !!!
   # This is only to make the example test cases pass, you should use a real
   # user model in your app instead.
-  config.current_user_from_token = -> (claims) { { id: claims['sub'] } }
+  # config.current_user_from_token = -> (claims) { { id: claims['sub'] } }
 
   ## Expiration claim
   ## ----------------
@@ -38,11 +38,6 @@ Knock.setup do |config|
   ## Signature key
   ## -------------
   ##
-  ## Configure the key used to sign tokens.
-  ##
-  ## Default:
-  # config.token_secret_signature_key = -> { Rails.application.secrets.secret_key_base }
-
   ## If using Auth0, uncomment the line below
   # config.token_secret_signature_key = -> { JWT.base64url_decode Rails.application.secrets.auth0_client_secret }
   config.token_secret_signature_key = lambda {
