@@ -1,40 +1,14 @@
 class ApplicationController < ActionController::API
-  include ActionController::RequestForgeryProtection
-  
+
   respond_to :json
 
   before_action :authenticate
-
-  def logged_in?
-    !!current_user
-  end
-
-  def current_user
-    if auth_present?
-      user = User.find(auth["user"])
-      if user
-        @current_user ||= user
-      end
-    end
-  end
-
-  def authenticate
-    render json: {error: "unauthorized"}, status: 404 unless logged_in?
-  end
+  attr_reader :current_user
 
   private
 
-    def token
-      request.env["HTTP_AUTHORIZATION"].scan(/Bearer (.*)$/).flatten.last
-    end
-
-    def auth
-      Auth.decode(token)
-    end
-
-    def auth_present?
-      !!request.env.fetch("HTTP_AUTHORIZATION", "").scan(/Bearer/).flatten.first
-    end
-end
-
+  def authenticate
+    @current_user = AuthorizeApiRequest.call(request.headers).result
+    render json: { error: 'Not Authorized' }, status: 401 unless @current_user
+  end
 end

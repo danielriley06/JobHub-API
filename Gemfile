@@ -7,7 +7,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'responders'
 gem 'bcrypt'
 gem 'jwt'
-
+gem 'simple_command'
 
 group :development, :test do
   gem 'byebug', platform: :mri

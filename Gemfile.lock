@@ -136,6 +136,7 @@ GEM
     rspec-support (3.5.0)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    simple_command (0.0.9)
     spring (1.7.2)
     spring-watcher-listen (2.0.0)
       listen (>= 2.7, < 4.0)
@@ -173,6 +174,7 @@ DEPENDENCIES
   responders
   rspec-rails (~> 3.5)
   shoulda-matchers (~> 3.1)
+  simple_command
   spring
   spring-watcher-listen (~> 2.0.0)
 

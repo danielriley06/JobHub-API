@@ -17,22 +17,27 @@ ActiveRecord::Schema.define(version: 20161001013921) do
 
   create_table "jobs", force: :cascade do |t|
     t.string   "company"
-    t.string   "title"
+    t.string   "jobtitle"
     t.string   "url"
     t.string   "phase"
     t.string   "salary"
-    t.string   "location"
+    t.string   "city"
+    t.string   "state"
     t.string   "contact_name"
     t.string   "contact_email"
+    t.string   "status",        default: "Saved", null: false
+    t.string   "snippet"
     t.string   "notes"
+    t.string   "jobkey"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["user_id"], name: "index_jobs_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
     t.datetime "created_at",      null: false

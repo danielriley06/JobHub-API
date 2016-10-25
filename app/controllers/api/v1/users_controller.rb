@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   respond_to :json
   include ErrorSerializer
-  skip_before_action :authenticate, only: [:create]
+  skip_before_action :authenticate, only: [:create, :show]
 
 
   def index
@@ -15,7 +15,13 @@ class Api::V1::UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      render json: {}, status: 200
+      command = AuthenticateUser.call(params["email"], params["password"])
+
+      if command.success?
+        render json: { auth_token: command.result }, status: 200
+      else
+        render json: { error: command.errors }, status: :unauthorized
+      end
     else
       render json: ErrorSerializer.serialize(user.errors), status: 422
     end
@@ -24,7 +30,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      params.permit(:first_name, :last_name, :email, :password, :password_confirmation)
     end
 
 

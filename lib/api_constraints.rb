@@ -5,6 +5,6 @@ class ApiConstraints
   end
 
   def matches?(req)
-    @default || req.headers['Accept'].include?("application/vnd.jobhunt.v#{@version}+json")
+    @default || req.headers['Accept'].include?("application/json")
   end
 end
