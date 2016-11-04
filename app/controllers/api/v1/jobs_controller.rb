@@ -20,6 +20,11 @@ class Api::V1::JobsController < ApplicationController
     end
   end
 
+  def update
+    @job = current_user.jobs.find(params[:id])
+    @job.update_attributes!(job_params)
+  end
+
   def destroy
     @job.destroy if Rails.env.development?
     head 204
