@@ -1,24 +1,13 @@
-# README
+# Rails 5 API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Backend for JobHub React App. Built with Rails 5 and uses JWT for user auth.
 
-Things you may want to cover:
+## Features
+* [jwt](https://github.com/jwt/ruby-jwt)
+* [simple_command](https://github.com/nebulab/simple_command)
+* Factry Girl
+* Rspec
 
-* Ruby version
+### Install from source
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+First, clone the project. Then use bundler to install gem dependencies. Use rails s command to start dev server.
